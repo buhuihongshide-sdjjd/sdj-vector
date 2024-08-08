@@ -20,6 +20,9 @@ class vec_iter{
     void operator=(_Ty *__pointer){
         ptr=__pointer;
     }
+    void operator=(vec_iter *__pointer){
+        ptr=__pointer.operator->();
+    }
     bool operator<(const vec_iter& __right)noexcept{
         return this->ptr<__right.ptr;
     }
@@ -105,7 +108,7 @@ ostream& operator<<(ostream& os,vec_iter<T> it){
 }
 template<class _Ty>
 class vec_citer{
-    _Ty* ptr;
+    const _Ty* ptr;
     using size_type=size_t;
     public:
     vec_citer(){
@@ -119,6 +122,9 @@ class vec_citer{
     }
     void operator=(_Ty *__pointer){
         ptr=__pointer;
+    }
+    void operator=(vec_citer *__pointer){
+        ptr=__pointer.operator->();
     }
     bool operator<(const vec_citer& __right)noexcept{
         return this->ptr<__right.ptr;
@@ -220,6 +226,9 @@ class vec_riter{
     void operator=(_Ty *__pointer){
         ptr=__pointer;
     }
+    void operator=(vec_riter *__pointer){
+        ptr=__pointer.operator->();
+    }
     bool operator<(const vec_riter& __right)noexcept{
         return this->ptr>__right.ptr;
     }
@@ -305,7 +314,7 @@ ostream& operator<<(ostream& os,vec_riter<T> rit){
 }
 template<class _Ty>
 class vec_criter{
-    _Ty* ptr;
+    const _Ty* ptr;
     using size_type=size_t;
     public:
     vec_criter(){
@@ -319,6 +328,9 @@ class vec_criter{
     }
     void operator=(_Ty *__pointer){
         ptr=__pointer;
+    }
+    void operator=(vec_criter *__pointer){
+        ptr=__pointer.operator->();
     }
     bool operator<(const vec_criter& __right)noexcept{
         return this->ptr>__right.ptr;
@@ -703,14 +715,9 @@ class Vector{
 	}
     iterator insert(const_iterator position,const T& val){
         if(m_size+1>c_size){
-            int a[c_size];
-            //memcpy(a,this->m_data,sizeof(a));
-            for(size_type i=0;i<c_size;i++) a[i]=m_data[i];
-            delete[] this->m_data;
-            this->m_data=new T[c_size+10];
-            c_size+=10;
-            //memcpy(this->m_data,a,sizeof(a));
-            for(size_type i=0;i<c_size-10;i++) m_data[i]=a[i];
+            size_type tmp=position.operator->()-m_data;
+            resize(c_size+10);
+            position=this->cbegin()+tmp;
         }
         m_size++;
         size_type pos=position.operator->()-m_data;
@@ -726,14 +733,9 @@ class Vector{
     }
     iterator insert(const_iterator position,T&& val){
         if(m_size+1>c_size){
-            int a[c_size];
-            //memcpy(a,this->m_data,sizeof(a));
-            for(size_type i=0;i<c_size;i++) a[i]=m_data[i];
-            delete[] this->m_data;
-            this->m_data=new T[c_size+10];
-            c_size+=10;
-            //memcpy(this->m_data,a,sizeof(a));
-            for(size_type i=0;i<c_size-10;i++) m_data[i]=a[i];
+            size_type tmp=position.operator->()-m_data;
+            resize(c_size+10);
+            position=this->cbegin()+tmp;
         }
         m_size++;
         size_type pos=position.operator->()-m_data;
@@ -749,45 +751,36 @@ class Vector{
     }
     void insert(const_iterator position,size_type count,const T& val){
         if(m_size+count>c_size){
-            int a[c_size];
-            //memcpy(a,this->m_data,sizeof(a));
-            for(size_type i=0;i<c_size;i++) a[i]=m_data[i];
-            delete[] this->m_data;
-            this->m_data=new T[c_size+10+count];
-            c_size+=(count+10);
-            //memcpy(this->m_data,a,sizeof(a));
-            for(size_type i=0;i<c_size-10-count;i++) m_data[i]=a[i];
+            size_type tmp=position.operator->()-m_data;
+            resize(c_size+10+count);
+            position=this->cbegin()+tmp;
         }
         m_size+=count;
         size_type pos=position.operator->()-m_data;
-        const size_type last=this->m_size-pos;
+        const size_type last=this->m_size-count;
         size_type i=last-1;
         for(;i>=pos;i--) m_data[i+count]=m_data[i];
         for(size_type j=0;j<count;j++) m_data[pos+j]=val;
     }
     void insert(iterator position,size_type count,const T& val){
         if(m_size+count>c_size){
-            int a[c_size];
-            //memcpy(a,this->m_data,sizeof(a));
-            for(size_type i=0;i<c_size;i++) a[i]=m_data[i];
-            delete[] this->m_data;
-            this->m_data=new T[c_size+10+count];
-            c_size+=(count+10);
-            //memcpy(this->m_data,a,sizeof(a));
-            for(size_type i=0;i<c_size-10-count;i++) m_data[i]=a[i];
+            size_type tmp=position.operator->()-m_data;
+            resize(c_size+10+count);
+            position=this->begin()+tmp;
         }
         m_size+=count;
         size_type pos=position.operator->()-m_data;
-        const size_type last=this->m_size-pos;
+        const size_type last=this->m_size-count;
         size_type i=last-1;
         for(;i>=pos;i--) m_data[i+count]=m_data[i];
         for(size_type j=0;j<count;j++) m_data[pos+j]=val;
     }
-    /*
     void insert(const_iterator position,const int* a,const int* b){
         size_type len=b-a;
         if(m_size+len>c_size){
+            size_type tmp=position.operator->()-m_data;
             resize(c_size+10+len);
+            position=this->cbegin()+tmp;
         }
         int tmp[len];
         //int *ptr=a;
@@ -796,14 +789,13 @@ class Vector{
         size_type pos=position.operator->()-m_data;
         const size_type last=this->m_size-len;
         size_type i=last-1;
-        for(;i>=len;i--) m_data[i+len]=m_data[i];
+        for(;i>=pos;i--) m_data[i+len]=m_data[i];
         for(size_type j=0;j<len;j++) m_data[pos+j]=tmp[j];
     }
     void insert(iterator position,const int *a,const int *b){
         const_iterator input=position.operator->();
         insert(input,a,b);
     }
-    */
 };
 int main()
 {
@@ -824,7 +816,9 @@ int main()
     int b[]={1,1,4,5,1,4,1,9,1,9,8,1,0};
     for(int i=1;i<=12;i++) a.push_back(i);
     //a.erase(a.begin()+2);
-    a.insert(a.begin()+2,b,b+13);
+    //a.insert(a.cbegin()+2,b,b+13);
+    a.insert(a.begin()+2,15,114);
+    a.shrink_to_fit();
     Vector<int>::iterator it=a.begin();
     for(;it<a.end();it++) printf("%d ",*it);
     printf("\n%zd %zd",a.size(),a.capacity());
