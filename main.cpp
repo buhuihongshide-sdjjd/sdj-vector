@@ -111,12 +111,11 @@ namespace sdj {
         _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
         }
+        friend ostream& operator<<(ostream& os, vec_iter<_Ty> it) {
+            cout << (_Ty*)(it.operator->());
+            return os;
+        }
     };
-    template<class T>
-    ostream& operator<<(ostream& os, vec_iter<T> it) {
-        cout << (T*)(it.operator->());
-        return os;
-    }
     template<class _Ty>
     class vec_citer {
         const _Ty* ptr;
@@ -222,12 +221,11 @@ namespace sdj {
         const _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
         }
+        friend ostream& operator<<(ostream& os, vec_citer<_Ty> it) {
+            cout << (_Ty*)(it.operator->());
+            return os;
+        }
     };
-    template<class T>
-    ostream& operator<<(ostream& os, vec_citer<T> cit) {
-        cout << (T*)(cit.operator->());
-        return os;
-    }
     template<class _Ty>
     class vec_riter {
         _Ty* ptr;
@@ -333,12 +331,11 @@ namespace sdj {
         _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
         }
+        friend ostream& operator<<(ostream& os, vec_riter<_Ty> it) {
+            cout << (_Ty*)(it.operator->());
+            return os;
+        }
     };
-    template<class T>
-    ostream& operator<<(ostream& os, vec_riter<T> rit) {
-        cout << (T*)(rit.operator->());
-        return os;
-    }
     template<class _Ty>
     class vec_criter {
         const _Ty* ptr;
@@ -444,12 +441,11 @@ namespace sdj {
         const _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
         }
+        friend ostream& operator<<(ostream& os, vec_criter<_Ty> it) {
+            cout << (_Ty*)(it.operator->());
+            return os;
+        }
     };
-    template<class T>
-    ostream& operator<<(ostream& os, vec_criter<T> crit) {
-        cout << (T*)(crit.operator->());
-        return os;
-    }
     template<class T>
     class Vector {
     public:
