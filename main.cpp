@@ -16,19 +16,13 @@ namespace sdj {
         using reference = _Ty&;
         using pointer = _Ty*;
         using iterator_category = std::random_access_iterator_tag;
-        vec_iter(_Ty* __pointer) {
-            ptr = __pointer;
-        }
-        vec_iter() {
-            ptr = nullptr;
-        }
-        vec_iter(vec_iter* __pointer) {
-            ptr = __pointer.ptr;
-        }
+        vec_iter() {ptr = nullptr;}
+        vec_iter(_Ty* __pointer): ptr(__pointer) {}
+        vec_iter(const vec_iter& __pointer): ptr(__pointer.ptr) {}
         void operator=(_Ty* __pointer) {
             ptr = __pointer;
         }
-        void operator=(vec_iter* __pointer) {
+        void operator=(const vec_iter& __pointer) {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_iter& __right)noexcept {
@@ -126,19 +120,13 @@ namespace sdj {
         using reference = const _Ty&;
         using pointer = const _Ty*;
         using iterator_category = std::random_access_iterator_tag;
-        vec_citer() {
-            ptr = nullptr;
-        }
-        vec_citer(vec_citer* __pointer) {
-            ptr = __pointer.ptr;
-        }
-        vec_citer(_Ty* __pointer) {
-            ptr = __pointer;
-        }
+        vec_citer() {ptr = nullptr;}
+        vec_citer(const vec_citer& __pointer): ptr(__pointer.ptr) {}
+        vec_citer(_Ty* __pointer): ptr(__pointer) {}
         void operator=(_Ty* __pointer) {
             ptr = __pointer;
         }
-        void operator=(vec_citer* __pointer) {
+        void operator=(const vec_citer& __pointer) {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_citer& __right)noexcept {
@@ -236,19 +224,13 @@ namespace sdj {
         using reference = _Ty&;
         using pointer = _Ty*;
         using iterator_category = std::random_access_iterator_tag;
-        vec_riter() {
-            ptr = nullptr;
-        }
-        vec_riter(vec_riter* __pointer) {
-            ptr = __pointer.ptr;
-        }
-        vec_riter(_Ty* __pointer) {
-            ptr = __pointer;
-        }
+        vec_riter() {ptr = nullptr;}
+        vec_riter(const vec_riter& __pointer): ptr(__pointer.ptr) {}
+        vec_riter(_Ty* __pointer): ptr(__pointer) {}
         void operator=(_Ty* __pointer) {
             ptr = __pointer;
         }
-        void operator=(vec_riter* __pointer) {
+        void operator=(const vec_riter& __pointer) {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_riter& __right)noexcept {
@@ -346,19 +328,13 @@ namespace sdj {
         using reference = const _Ty&;
         using pointer = const _Ty*;
         using iterator_category = std::random_access_iterator_tag;
-        vec_criter() {
-            ptr = nullptr;
-        }
-        vec_criter(vec_criter* __pointer) {
-            ptr = __pointer.ptr;
-        }
-        vec_criter(_Ty* __pointer) {
-            ptr = __pointer;
-        }
+        vec_criter() {ptr = nullptr;}
+        vec_criter(const vec_criter& __pointer): ptr(__pointer.ptr) {}
+        vec_criter(_Ty* __pointer): ptr(__pointer) {}
         void operator=(_Ty* __pointer) {
             ptr = __pointer;
         }
-        void operator=(vec_criter* __pointer) {
+        void operator=(const vec_criter& __pointer) {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_criter& __right)noexcept {
@@ -883,8 +859,16 @@ int main() {
     cout << endl;
 
     v1.insert(v1.begin() + 2, 114);
+    /*
     for (const auto& i : v1) {
         cout << i << ' ';
+    }
+    cout << endl;
+    */
+
+    vec_iter<int> it = v1.begin();
+    for (; it != v1.end(); it++) {
+        cout << *it << ' ';
     }
     cout << endl;
 
