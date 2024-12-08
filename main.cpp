@@ -26,40 +26,40 @@ namespace sdj {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_iter& __right)noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         const bool operator<(const vec_iter& __right)const noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         bool operator<=(const vec_iter& __right)noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         const bool operator<=(const vec_iter& __right)const noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         bool operator>(const vec_iter& __right)noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         const bool operator>(const vec_iter& __right)const noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         bool operator>=(const vec_iter& __right)noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         const bool operator>=(const vec_iter& __right)const noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         bool operator==(const vec_iter& __right)noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         const bool operator==(const vec_iter& __right)const noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         bool operator!=(const vec_iter& __right)noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         const bool operator!=(const vec_iter& __right)const noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         _Ty& operator*()const noexcept {
             return *ptr;
@@ -130,40 +130,40 @@ namespace sdj {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_citer& __right)noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         const bool operator<(const vec_citer& __right)const noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         bool operator<=(const vec_citer& __right)noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         const bool operator<=(const vec_citer& __right)const noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         bool operator>(const vec_citer& __right)noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         const bool operator>(const vec_citer& __right)const noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         bool operator>=(const vec_citer& __right)noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         const bool operator>=(const vec_citer& __right)const noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         bool operator==(const vec_citer& __right)noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         const bool operator==(const vec_citer& __right)const noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         bool operator!=(const vec_citer& __right)noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         const bool operator!=(const vec_citer& __right)const noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         const _Ty& operator*()const noexcept {
             return *ptr;
@@ -234,40 +234,40 @@ namespace sdj {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_riter& __right)noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         const bool operator<(const vec_riter& __right)const noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         bool operator<=(const vec_riter& __right)noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         const bool operator<=(const vec_riter& __right)const noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         bool operator>(const vec_riter& __right)noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         const bool operator>(const vec_riter& __right)const noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         bool operator>=(const vec_riter& __right)noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         const bool operator>=(const vec_riter& __right)const noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         bool operator==(const vec_riter& __right)noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         const bool operator==(const vec_riter& __right)const noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         bool operator!=(const vec_riter& __right)noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         const bool operator!=(const vec_riter& __right)const noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         _Ty& operator*()const noexcept {
             return *ptr;
@@ -338,40 +338,40 @@ namespace sdj {
             ptr = __pointer.operator->();
         }
         bool operator<(const vec_criter& __right)noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         const bool operator<(const vec_criter& __right)const noexcept {
-            return this->ptr > __right.ptr;
+            return ptr > __right.ptr;
         }
         bool operator<=(const vec_criter& __right)noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         const bool operator<=(const vec_criter& __right)const noexcept {
-            return this->ptr >= __right.ptr;
+            return ptr >= __right.ptr;
         }
         bool operator>(const vec_criter& __right)noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         const bool operator>(const vec_criter& __right)const noexcept {
-            return this->ptr < __right.ptr;
+            return ptr < __right.ptr;
         }
         bool operator>=(const vec_criter& __right)noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         const bool operator>=(const vec_criter& __right)const noexcept {
-            return this->ptr <= __right.ptr;
+            return ptr <= __right.ptr;
         }
         bool operator==(const vec_criter& __right)noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         const bool operator==(const vec_criter& __right)const noexcept {
-            return this->ptr == __right.ptr;
+            return ptr == __right.ptr;
         }
         bool operator!=(const vec_criter& __right)noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         const bool operator!=(const vec_criter& __right)const noexcept {
-            return this->ptr != __right.ptr;
+            return ptr != __right.ptr;
         }
         const _Ty& operator*()const noexcept {
             return *ptr;
@@ -447,38 +447,41 @@ namespace sdj {
             m_data = new T[__size]{}, m_size = __size, m_capacity = __size;
         }
         Vector(size_t __size, const T& val) {
-            m_data = new T[__size + 10], m_size = __size, m_capacity = __size + 10;
-            for (size_type i = 0; i < m_size; i++) m_data[i] = val;
+            m_data = new T[__size], m_size = __size, m_capacity = __size;
+            for (size_type i = 0; i < m_size; ++i) m_data[i] = val;
         }
         Vector(const Vector& __right) {
             m_size = __right.m_size;
             m_capacity = __right.m_capacity;
             m_data = new T[m_capacity];
-            for (size_type i = 0; i < m_size; i++) m_data[i] = __right.m_data[i];
+            for (size_type i = 0; i < m_size; ++i) m_data[i] = __right.m_data[i];
         }
         Vector(Vector&& __right) {
             m_size = __right.m_size;
             m_capacity = __right.m_capacity;
             m_data = new T[m_capacity];
-            for (size_type i = 0; i < m_size; i++) m_data[i] = __right.m_data[i];
+            for (size_type i = 0; i < m_size; ++i) m_data[i] = __right.m_data[i];
         }
         template <class InputIterator>
         Vector(InputIterator __left, InputIterator __right) {
-            InputIterator tmp;
             size_type __size = __right - __left;
-            m_data = new T[__size + 10], m_size = __size, m_capacity = __size + 10;
+            m_data = new T[__size], m_size = __size, m_capacity = __size;
             size_type i = 0;
-            for (; i < m_size; i++) {
-                tmp = __left++;
-                m_data[i] = *tmp;
+            while (__left != __right) {
+                m_data[i] = *__left;
+                ++__left;
+                ++i;
             }
         }
-        Vector(const initializer_list<T>& __list) {
-            size_type __size = __list.size();
-            m_data = new T[__size + 10], m_size = __size, m_capacity = __size + 10;
-            const T* it = __list.begin();
-            for (size_type i = 0; i < __size; i++, it++) {
-                m_data[i] = *it;
+        Vector(const initializer_list<T>& init_list) {
+            size_type __size = init_list.size();
+            auto __left = init_list.begin(), __right = init_list.end();
+            m_data = new T[__size], m_size = __size, m_capacity = __size;
+            size_type i = 0;
+            while (__left != __right) {
+                m_data[i] = *__left;
+                ++__left;
+                ++i;
             }
         }
         ~Vector() {
@@ -490,38 +493,43 @@ namespace sdj {
             m_capacity = 0;
         }
         void assign(size_type count, const T& value) {
-            this->clear();
+            clear();
             Vector(count, value);
-        }
-        void assign(initializer_list<T> init_list) {
-            this->clear();
-            size_type __size = init_list.size();
-            m_data = new T[__size + 10], m_size = __size, m_capacity = __size + 10;
-            const T* it = init_list.begin();
-            for (size_type i = 0; i < __size; i++, it++) {
-                m_data[i] = *it;
-            }
         }
         template <class InputIterator>
         void assign(InputIterator __left, InputIterator __right) {
-            this->clear();
+            clear();
             size_type __size = __right - __left;
-            m_data = new T[__size + 10], m_size = __size, m_capacity = __size + 10;
+            m_data = new T[__size], m_size = __size, m_capacity = __size;
             size_type i = 0;
-            while (__left < __right) {
-                m_data[i++] = *(__left++);
+            while (__left != __right) {
+                m_data[i] = *__left;
+                ++__left;
+                ++i;
+            }
+        }
+        void assign(initializer_list<T> init_list) {
+            clear();
+            size_type __size = init_list.size();
+            auto __left = init_list.begin(), __right = init_list.end();
+            m_data = new T[__size], m_size = __size, m_capacity = __size;
+            size_type i = 0;
+            while (__left != __right) {
+                m_data[i] = *__left;
+                ++__left;
+                ++i;
             }
         }
         Vector& operator=(Vector<T>&& __right) {
-            this->clear();
+            clear();
             m_size = __right.m_size;
             m_capacity = __right.m_capacity;
             m_data = new T[m_capacity];
-            for (size_type i = 0; i < m_size; i++) m_data[i] = __right.m_data[i];
+            for (size_type i = 0; i < m_size; ++i) m_data[i] = __right.m_data[i];
             return *this;
         }
         Vector& operator=(const Vector<T>& __right) {
-            this->clear();
+            clear();
             m_size = __right.m_size;
             m_capacity = __right.m_capacity;
             m_data = new T[m_capacity];
@@ -529,88 +537,86 @@ namespace sdj {
             return *this;
         }
         const size_type size(void)const noexcept {
-            return this->m_size;
+            return m_size;
         }
-        const size_type capacity()const noexcept {
-            return this->m_capacity;
+        const size_type capacity(void)const noexcept {
+            return m_capacity;
         }
         bool empty()const noexcept {
             return m_size == 0;
         }
         void resize(size_type __size) {
-            if (__size <= 0) throw "Not a available size!";
-            //int a[m_capacity];
-            T* a = new T[m_capacity];
-            for (size_type i = 0; i < min(__size, m_size); i++) a[i] = m_data[i];
-            delete[] this->m_data;
-            this->m_data = new T[__size];
+            if (__size == m_capacity) {
+                m_size = __size;
+                return ;
+            }
+            T* new_data = new T[__size];
+            size_type copy_size = min(__size, m_size);
+            for(size_type i = 0; i < copy_size; ++i){
+                new_data[i] = m_data[i];
+            }
+            delete[] m_data;
+            m_data = new_data;
+            m_size = __size;
             m_capacity = __size;
-            m_size = min(__size, m_size);
-            for (size_type i = 0; i < m_size; i++) m_data[i] = a[i];
-            delete[] a;
         }
         void resize(size_type __size, const T& val) {
-            if (__size <= 0) throw "Not a available size!";
-            int a[m_capacity];
-            for (size_type i = 0; i < min(__size, m_size); i++) a[i] = m_data[i];
-            delete[] this->m_data;
-            this->m_data = new T[__size];
-            m_capacity = __size;
-            m_size = min(__size, m_size);
-            size_type i = 0;
-            for (; i < m_size; i++) m_data[i] = a[i];
-            for (; i < m_capacity; i++) m_data[i] = val;
+            resize(__size);
+            for (size_type i = 0; i < m_capacity; i++) m_data[i] = val;
         }
         void shrink_to_fit() {
             resize(m_size);
         }
         reference at(size_type __pos) {
-            if (__pos < 0 || __pos >= this->m_size) throw "Invalid position!";
-            return this->m_data[__pos];
+            if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
+            return m_data[__pos];
         }
         const_reference at(size_type __pos)const {
-            if (__pos < 0 || __pos >= this->m_size) throw "Invalid position!";
-            return this->m_data[__pos];
+            if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
+            return m_data[__pos];
         }
         reference operator[](size_type __pos) {
-            if (__pos < 0 || __pos >= this->m_size) throw "Invalid position!";
-            return this->m_data[__pos];
+            if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
+            return m_data[__pos];
         }
         const_reference operator[](size_type __pos)const {
-            if (__pos < 0 || __pos >= this->m_size) throw "Invalid position!";
-            return this->m_data[__pos];
+            if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
+            return m_data[__pos];
         }
         reference front() {
-            return this->at(0);
+            return at(0);
         }
         const_reference front()const {
-            return this->at(0);
+            return at(0);
         }
         reference back() {
-            return this->at(this->m_size - 1);
+            return at(m_size - 1);
         }
         const_reference back()const {
-            return this->at(this->m_size - 1);
+            return at(m_size - 1);
         }
         void push_back(const T& val)noexcept {
             if (m_size + 1 > m_capacity) {
-                //int a[m_capacity];
+                /*
+                // int a[m_capacity];
                 T* a = new T[m_capacity];
-                //memcpy(a,this->m_data,sizeof(a));
+                // memcpy(a,m_data,sizeof(a));
                 for (size_type i = 0; i < m_capacity; i++) a[i] = m_data[i];
-                delete[] this->m_data;
-                this->m_data = new T[m_capacity + 10];
-                m_capacity += 10;
-                //memcpy(this->m_data,a,sizeof(a));
+                delete[] m_data;
+                m_data = new T[m_capacity += 10];
+                // memcpy(m_data,a,sizeof(a));
                 for (size_type i = 0; i < m_capacity - 10; i++) m_data[i] = a[i];
                 delete[] a;
+                */
+                resize(m_capacity + 10);
+                m_size -= 10;
             }
-            this->m_data[m_size++] = val;
+            m_data[m_size++] = val;
         }
         void pop_back() {
-            if (this->empty()) throw "The vector is empty!";
-            m_data[--m_size] = T(0);
-            if (this->m_size + (size_type)20 < m_capacity) {
+            if (empty()) throw std::runtime_error("The vector is empty!");
+            m_data[--m_size] = T();
+            if (m_size + (size_type)20 < m_capacity) {
                 resize(m_capacity - 10);
             }
         }
@@ -657,34 +663,34 @@ namespace sdj {
             return m_data;
         }
         iterator erase(const_iterator position) {
-            if (position < this->cbegin() || position >= this->cend()) throw "Invalid position!";
+            if (position < cbegin() || position >= cend()) throw std::runtime_error("Invalid position!");
             size_type pos = position.operator->() - m_data;
             for (size_type i = pos; i < m_size - 1; i++) m_data[i] = m_data[i + 1];
             m_data[--m_size] = 0;
-            if (this->m_size + (size_type)20 < m_capacity) {
+            if (m_size + (size_type)20 < m_capacity) {
                 resize(m_capacity - 10);
             }
-            if (pos == m_size) return this->end();
-            else return this->begin() + pos;
+            if (pos == m_size) return end();
+            else return begin() + pos;
         }
         iterator erase(iterator position) {
             const_iterator input = position.operator->();
             return erase(input);
         }
         iterator erase(const_iterator __left, const_iterator __right) {
-            if (__left < this->cbegin() || __left >= this->cend()) throw "Invalid position!";
-            else if (__right < this->cbegin() || __right >= this->cend()) throw "Invalid position!";
+            if (__left < cbegin() || __left >= cend()) std::runtime_error("Invalid position!");
+            else if (__right < cbegin() || __right >= cend()) std::runtime_error("Invalid position!");
             size_type len = __right.operator->() - __left.operator->();
             size_type pos = __left.operator->() - m_data;
             size_type i = pos;
             for (; i < m_size - len; i++) m_data[i] = m_data[i + len];
             for (; i < m_size; i++) m_data[i] = 0;
             m_size -= len;
-            if (this->m_size + (size_type)20 < m_capacity) {
+            if (m_size + (size_type)20 < m_capacity) {
                 resize(m_capacity - 10);
             }
-            if (pos >= m_size) return this->end();
-            else return this->begin() + pos;
+            if (pos >= m_size) return end();
+            else return begin() + pos;
         }
         iterator erase(iterator __left, iterator __right) {
             const_iterator input_left = __left.operator->();
@@ -697,12 +703,12 @@ namespace sdj {
             tmp_data = right.m_data;
             tmp_size = right.m_size;
             ctmp_size = right.m_capacity;
-            right.m_data = this->m_data;
-            right.m_size = this->m_size;
-            right.m_capacity = this->m_capacity;
-            this->m_data = tmp_data;
-            this->m_size = tmp_size;
-            this->m_capacity = ctmp_size;
+            right.m_data = m_data;
+            right.m_size = m_size;
+            right.m_capacity = m_capacity;
+            m_data = tmp_data;
+            m_size = tmp_size;
+            m_capacity = ctmp_size;
         }
         friend void swap(Vector<T>& left, Vector<T>& right) {
             left.swap(right);
@@ -711,15 +717,16 @@ namespace sdj {
             if (m_size + 1 > m_capacity) {
                 size_type tmp = position.operator->() - m_data;
                 resize(m_capacity + 10);
-                position = this->cbegin() + tmp;
+                position = cbegin() + tmp;
+                m_size -= 10;
             }
             m_size++;
             size_type pos = position.operator->() - m_data;
-            const size_type last = this->m_size - 1;
+            const size_type last = m_size - 1;
             size_type i = last - 1;
             for (; i >= pos; i--) m_data[i + 1] = m_data[i];
             m_data[pos] = val;
-            return this->begin() + pos;
+            return begin() + pos;
         }
         iterator insert(iterator position, const T& val) {
             const_iterator input = position.operator->();
@@ -729,15 +736,16 @@ namespace sdj {
             if (m_size + 1 > m_capacity) {
                 size_type tmp = position.operator->() - m_data;
                 resize(m_capacity + 10);
-                position = this->cbegin() + tmp;
+                position = cbegin() + tmp;
+                m_size -= 10;
             }
             m_size++;
             size_type pos = position.operator->() - m_data;
-            const size_type last = this->m_size - 1;
+            const size_type last = m_size - 1;
             size_type i = last - 1;
             for (; i >= pos; i--) m_data[i + 1] = m_data[i];
             m_data[pos] = val;
-            return this->begin() + pos;
+            return begin() + pos;
         }
         iterator insert(iterator position, T&& val) {
             const_iterator input = position.operator->();
@@ -747,11 +755,12 @@ namespace sdj {
             if (m_size + count > m_capacity) {
                 size_type tmp = position.operator->() - m_data;
                 resize(m_capacity + 10 + count);
-                position = this->cbegin() + tmp;
+                position = cbegin() + tmp;
+                m_size -= count + 10;
             }
             m_size += count;
             size_type pos = position.operator->() - m_data;
-            const size_type last = this->m_size - count;
+            const size_type last = m_size - count;
             size_type i = last - 1;
             for (; i >= pos; i--) m_data[i + count] = m_data[i];
             for (size_type j = 0; j < count; j++) m_data[pos + j] = val;
@@ -760,11 +769,12 @@ namespace sdj {
             if (m_size + count > m_capacity) {
                 size_type tmp = position.operator->() - m_data;
                 resize(m_capacity + 10 + count);
-                position = this->begin() + tmp;
+                position = begin() + tmp;
+                m_size -= count + 10;
             }
             m_size += count;
             size_type pos = position.operator->() - m_data;
-            const size_type last = this->m_size - count;
+            const size_type last = m_size - count;
             size_type i = last - 1;
             for (; i >= pos; i--) m_data[i + count] = m_data[i];
             for (size_type j = 0; j < count; j++) m_data[pos + j] = val;
@@ -774,17 +784,18 @@ namespace sdj {
             if (m_size + len > m_capacity) {
                 size_type tmp = position.operator->() - m_data;
                 resize(m_capacity + 10 + len);
-                position = this->cbegin() + tmp;
+                position = cbegin() + tmp;
+                m_size -= 10 + len;
             }
-            int tmp[len];
+            int* tmp = new int[len];
             //int *ptr=a;
             for (int i = 0; i < len; a++, i++) tmp[i] = *a;
+            size_type pos = position - cbegin();
+            size_type last = m_size;
             m_size += len;
-            size_type pos = position.operator->() - m_data;
-            const size_type last = this->m_size - len;
-            size_type i = last - 1;
-            for (; i >= pos; i--) m_data[i + len] = m_data[i];
+            for (size_type i = last; i > pos; i--) m_data[i + len - 1] = m_data[i - 1];
             for (size_type j = 0; j < len; j++) m_data[pos + j] = tmp[j];
+            delete[] tmp;
         }
         void insert(iterator position, const int* a, const int* b) {
             const_iterator input = position.operator->();
@@ -845,12 +856,23 @@ int main() {
 
     v.assign(a, a + 6);
     Vector <int> v1 = v;
-
     for (const auto& i : v1) {
         cout << i << ' ';
     }
     cout << endl;
     cout << "v1.capacity()=" << v1.capacity() << endl;
+
+    Vector <int> Ilist = {1, 9, 1};
+    Ilist.push_back(0);
+    Ilist.insert(Ilist.begin() + 2, 8);
+    Ilist.shrink_to_fit();
+    int tmp[2] = {1, 9};
+    Ilist.insert(Ilist.begin(), tmp, tmp + 2);
+    for (const auto& i : Ilist) {
+        cout << i << ' ';
+    }
+    cout << endl;
+    cout << "Ilist.capacity()=" << Ilist.capacity() << endl;
 
     v1.erase(v1.begin(), v1.begin() + 2);
     for (const auto& i : v1) {
