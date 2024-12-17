@@ -561,8 +561,9 @@ namespace sdj {
             m_capacity = __size;
         }
         void resize(size_type __size, const T& val) {
+            size_type now_size = m_size;
             resize(__size);
-            for (size_type i = 0; i < m_capacity; i++) m_data[i] = val;
+            for (size_type i = now_size; i < m_capacity; i++) m_data[i] = val;
         }
         void shrink_to_fit() {
             resize(m_size);
@@ -576,11 +577,11 @@ namespace sdj {
             return m_data[__pos];
         }
         reference operator[](size_type __pos) {
-            if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
+            // if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
             return m_data[__pos];
         }
         const_reference operator[](size_type __pos)const {
-            if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
+            // if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
             return m_data[__pos];
         }
         reference front() {
