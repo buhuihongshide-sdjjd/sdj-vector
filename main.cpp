@@ -687,7 +687,7 @@ namespace sdj {
             for (; i < m_size - len; i++) m_data[i] = m_data[i + len];
             for (; i < m_size; i++) m_data[i] = 0;
             m_size -= len;
-            if (m_size + (size_type)20 < m_capacity) {
+            if (m_size + len + (size_type)20 < m_capacity) {
                 resize(m_capacity - 10);
             }
             if (pos >= m_size) return end();
