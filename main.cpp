@@ -585,30 +585,19 @@ namespace sdj {
             return m_data[__pos];
         }
         reference front() {
-            return at(0);
+            return m_data[0];
         }
         const_reference front()const {
-            return at(0);
+            return m_data[0];
         }
         reference back() {
-            return at(m_size - 1);
+            return m_data[m_size - 1];
         }
         const_reference back()const {
-            return at(m_size - 1);
+            return m_data[m_size - 1];
         }
         void push_back(const T& val)noexcept {
             if (m_size + 1 > m_capacity) {
-                /*
-                // int a[m_capacity];
-                T* a = new T[m_capacity];
-                // memcpy(a,m_data,sizeof(a));
-                for (size_type i = 0; i < m_capacity; i++) a[i] = m_data[i];
-                delete[] m_data;
-                m_data = new T[m_capacity += 10];
-                // memcpy(m_data,a,sizeof(a));
-                for (size_type i = 0; i < m_capacity - 10; i++) m_data[i] = a[i];
-                delete[] a;
-                */
                 resize(m_capacity + 10);
                 m_size -= 10;
             }
@@ -681,7 +670,7 @@ namespace sdj {
         iterator erase(const_iterator __left, const_iterator __right) {
             if (__left < cbegin() || __left >= cend()) std::runtime_error("Invalid position!");
             else if (__right < cbegin() || __right >= cend()) std::runtime_error("Invalid position!");
-            size_type len = __right.operator->() - __left.operator->();
+            size_type len = __right - __left;
             size_type pos = __left.operator->() - m_data;
             size_type i = pos;
             for (; i < m_size - len; i++) m_data[i] = m_data[i + len];
@@ -699,7 +688,7 @@ namespace sdj {
             return erase(input_left, input_right);
         }
         void swap(Vector<T>& right) {
-            int* tmp_data;
+            T* tmp_data;
             size_type tmp_size, ctmp_size;
             tmp_data = right.m_data;
             tmp_size = right.m_size;
@@ -780,7 +769,8 @@ namespace sdj {
             for (; i >= pos; i--) m_data[i + count] = m_data[i];
             for (size_type j = 0; j < count; j++) m_data[pos + j] = val;
         }
-        void insert(const_iterator position, const int* a, const int* b) {
+        template<class InputIterator>
+        void insert(const_iterator position, InputIterator a, InputIterator b) {
             size_type len = b - a;
             if (m_size + len > m_capacity) {
                 size_type tmp = position.operator->() - m_data;
@@ -788,8 +778,7 @@ namespace sdj {
                 position = cbegin() + tmp;
                 m_size -= 10 + len;
             }
-            int* tmp = new int[len];
-            //int *ptr=a;
+            T* tmp = new T[len];
             for (int i = 0; i < len; a++, i++) tmp[i] = *a;
             size_type pos = position - cbegin();
             size_type last = m_size;
@@ -798,7 +787,8 @@ namespace sdj {
             for (size_type j = 0; j < len; j++) m_data[pos + j] = tmp[j];
             delete[] tmp;
         }
-        void insert(iterator position, const int* a, const int* b) {
+        template<class InputIterator>
+        void insert(iterator position, InputIterator a, InputIterator b) {
             const_iterator input = position.operator->();
             insert(input, a, b);
         }
@@ -855,6 +845,12 @@ int main() {
     }
     cout << endl;
 
+    v.insert(v.begin() + 1, a + 2, a + 4);
+    for (const auto& i : v) {
+        cout << i << ' ';
+    }
+    cout << endl;
+
     v.assign(a, a + 6);
     Vector <int> v1 = v;
     for (const auto& i : v1) {
@@ -889,7 +885,7 @@ int main() {
     cout << endl;
     */
 
-    vec_iter<int> it = v1.begin();
+    Vector <int>::iterator it = v1.begin();
     for (; it != v1.end(); it++) {
         cout << *it << ' ';
     }
