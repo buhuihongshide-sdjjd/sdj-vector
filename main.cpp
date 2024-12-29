@@ -105,10 +105,6 @@ namespace sdj {
         _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
         }
-        friend ostream& operator<<(ostream& os, vec_iter<_Ty> it) {
-            cout << (_Ty*)(it.operator->());
-            return os;
-        }
     };
     template<class _Ty>
     class vec_citer {
@@ -208,10 +204,6 @@ namespace sdj {
         }
         const _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
-        }
-        friend ostream& operator<<(ostream& os, vec_citer<_Ty> it) {
-            cout << (_Ty*)(it.operator->());
-            return os;
         }
     };
     template<class _Ty>
@@ -313,10 +305,6 @@ namespace sdj {
         _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
         }
-        friend ostream& operator<<(ostream& os, vec_riter<_Ty> it) {
-            cout << (_Ty*)(it.operator->());
-            return os;
-        }
     };
     template<class _Ty>
     class vec_criter {
@@ -417,10 +405,6 @@ namespace sdj {
         const _Ty& operator[](difference_type _Off) const {
             return (_Ty&)*(*this + _Off);
         }
-        friend ostream& operator<<(ostream& os, vec_criter<_Ty> it) {
-            cout << (_Ty*)(it.operator->());
-            return os;
-        }
     };
     template<class T>
     class Vector {
@@ -441,7 +425,7 @@ namespace sdj {
         size_type m_capacity;
     public:
         Vector() {
-            m_data = new T[10], m_size = 0, m_capacity = 10;
+            m_data = new T[0], m_size = 0, m_capacity = 0;
         }
         explicit Vector(size_t __size) {
             m_data = new T[__size]{}, m_size = __size, m_capacity = __size;
@@ -577,11 +561,9 @@ namespace sdj {
             return m_data[__pos];
         }
         reference operator[](size_type __pos) {
-            // if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
             return m_data[__pos];
         }
         const_reference operator[](size_type __pos)const {
-            // if (__pos < 0 || __pos >= m_size) throw std::runtime_error("Invalid position!");
             return m_data[__pos];
         }
         reference front() {
@@ -607,7 +589,9 @@ namespace sdj {
             if (empty()) throw std::runtime_error("The vector is empty!");
             m_data[--m_size] = T();
             if (m_size + (size_type)20 < m_capacity) {
+                size_type prev_size = m_size;
                 resize(m_capacity - 10);
+                m_size = prev_size;
             }
         }
         iterator begin()noexcept {
@@ -654,11 +638,13 @@ namespace sdj {
         }
         iterator erase(const_iterator position) {
             if (position < cbegin() || position >= cend()) throw std::runtime_error("Invalid position!");
-            size_type pos = position.operator->() - m_data;
+            size_type pos = position - cbegin();
             for (size_type i = pos; i < m_size - 1; i++) m_data[i] = m_data[i + 1];
             m_data[--m_size] = 0;
             if (m_size + (size_type)20 < m_capacity) {
+                size_type prev_size = m_size;
                 resize(m_capacity - 10);
+                m_size = prev_size;
             }
             if (pos == m_size) return end();
             else return begin() + pos;
@@ -671,13 +657,15 @@ namespace sdj {
             if (__left < cbegin() || __left >= cend()) std::runtime_error("Invalid position!");
             else if (__right < cbegin() || __right >= cend()) std::runtime_error("Invalid position!");
             size_type len = __right - __left;
-            size_type pos = __left.operator->() - m_data;
+            size_type pos = __left - cbegin();
             size_type i = pos;
             for (; i < m_size - len; i++) m_data[i] = m_data[i + len];
             for (; i < m_size; i++) m_data[i] = 0;
             m_size -= len;
             if (m_size + len + (size_type)20 < m_capacity) {
+                size_type prev_size = m_size;
                 resize(m_capacity - 10);
+                m_size = prev_size;
             }
             if (pos >= m_size) return end();
             else return begin() + pos;
@@ -711,7 +699,7 @@ namespace sdj {
                 m_size -= 10;
             }
             m_size++;
-            size_type pos = position.operator->() - m_data;
+            size_type pos = position - cbegin();
             const size_type last = m_size - 1;
             size_type i = last - 1;
             for (; i >= pos; i--) m_data[i + 1] = m_data[i];
@@ -724,7 +712,7 @@ namespace sdj {
         }
         iterator insert(const_iterator position, T&& val) {
             if (m_size + 1 > m_capacity) {
-                size_type tmp = position.operator->() - m_data;
+                size_type tmp = position - cbegin();
                 resize(m_capacity + 10);
                 position = cbegin() + tmp;
                 m_size -= 10;
@@ -743,10 +731,11 @@ namespace sdj {
         }
         void insert(const_iterator position, size_type count, const T& val) {
             if (m_size + count > m_capacity) {
-                size_type tmp = position.operator->() - m_data;
+                size_type prev_size = m_size;
+                size_type tmp = position - cbegin();
                 resize(m_capacity + 10 + count);
                 position = cbegin() + tmp;
-                m_size -= count + 10;
+                m_size = prev_size;
             }
             m_size += count;
             size_type pos = position.operator->() - m_data;
@@ -757,10 +746,11 @@ namespace sdj {
         }
         void insert(iterator position, size_type count, const T& val) {
             if (m_size + count > m_capacity) {
+                size_type prev_size = m_size;
                 size_type tmp = position.operator->() - m_data;
                 resize(m_capacity + 10 + count);
                 position = begin() + tmp;
-                m_size -= count + 10;
+                m_size = prev_size;
             }
             m_size += count;
             size_type pos = position.operator->() - m_data;
@@ -773,10 +763,11 @@ namespace sdj {
         void insert(const_iterator position, InputIterator a, InputIterator b) {
             size_type len = b - a;
             if (m_size + len > m_capacity) {
+                size_type prev_size = m_size;
                 size_type tmp = position.operator->() - m_data;
                 resize(m_capacity + 10 + len);
                 position = cbegin() + tmp;
-                m_size -= 10 + len;
+                m_size = prev_size;
             }
             T* tmp = new T[len];
             for (int i = 0; i < len; a++, i++) tmp[i] = *a;
