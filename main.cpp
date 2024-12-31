@@ -783,6 +783,11 @@ namespace sdj {
             const_iterator input = position.operator->();
             insert(input, a, b);
         }
+        void reserve(size_type __size) {
+            clear();
+            m_capacity = __size;
+            m_data = new T[__size];
+        }
     };
     template<typename T>
     bool operator==(const Vector<T>& left, const Vector<T>& right) {
