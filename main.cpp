@@ -10,7 +10,6 @@ namespace sdj {
     class vec_iter {
         _Ty* ptr;
     public:
-        using size_type = size_t;
         using value_type = _Ty;
         using difference_type = ptrdiff_t;
         using reference = _Ty&;
@@ -110,7 +109,6 @@ namespace sdj {
     class vec_citer {
         const _Ty* ptr;
     public:
-        using size_type = size_t;
         using value_type = _Ty;
         using difference_type = ptrdiff_t;
         using reference = const _Ty&;
@@ -210,7 +208,6 @@ namespace sdj {
     class vec_riter {
         _Ty* ptr;
     public:
-        using size_type = size_t;
         using value_type = _Ty;
         using difference_type = ptrdiff_t;
         using reference = _Ty&;
@@ -310,7 +307,6 @@ namespace sdj {
     class vec_criter {
         const _Ty* ptr;
     public:
-        using size_type = size_t;
         using value_type = _Ty;
         using difference_type = ptrdiff_t;
         using reference = const _Ty&;
@@ -848,12 +844,20 @@ int main() {
     cout << endl;
 
     v.assign(a, a + 6);
-    Vector <int> v1 = v;
+    Vector <int> v1 = {0, 0, 1};
+    swap(v, v1);
     for (const auto& i : v1) {
         cout << i << ' ';
     }
     cout << endl;
     cout << "v1.capacity()=" << v1.capacity() << endl;
+
+    sort(v1.begin(), v1.end());
+    v1.resize(unique(v1.begin(), v1.end()) - v1.begin());
+    for (const auto& i : v1) {
+        cout << i << ' ';
+    }
+    cout << endl;
 
     Vector <int> Ilist = {1, 9, 1};
     Ilist.push_back(0);
@@ -867,6 +871,8 @@ int main() {
     cout << endl;
     cout << "Ilist.capacity()=" << Ilist.capacity() << endl;
 
+    v1.assign({1, 1, 4, 5, 1, 4});
+
     v1.erase(v1.begin(), v1.begin() + 2);
     for (const auto& i : v1) {
         cout << i << ' ';
@@ -874,12 +880,6 @@ int main() {
     cout << endl;
 
     v1.insert(v1.begin() + 2, 114);
-    /*
-    for (const auto& i : v1) {
-        cout << i << ' ';
-    }
-    cout << endl;
-    */
 
     Vector <int>::iterator it = v1.begin();
     for (; it != v1.end(); it++) {
@@ -888,14 +888,12 @@ int main() {
     cout << endl;
 
     vector <int> v2, v3;
-    v2.push_back( 1 );
-    v2.push_back( 3 );
-    v2.push_back( 1 );
-
-    v3.push_back( 1 );
-    v3.push_back( 2 );
-    v3.push_back( 2 );
-
+    v2.push_back(1);
+    v2.push_back(3);
+    v2.push_back(1);
+    v3.push_back(1);
+    v3.push_back(2);
+    v3.push_back(2);
     if ( v2 >= v3 ) {
         cout << "Vector v2 is greater than or equal to vector v3." << endl;
     }
