@@ -175,13 +175,13 @@ namespace sdj {
             return ret;
         }
         const vec_citer& operator--() {
+            ptr--;
+            return *this;
+        }
+        const vec_citer operator--(int) {
             vec_citer ret = *this;
             ptr--;
             return ret;
-        }
-        const vec_citer operator--(int) {
-            ptr--;
-            return *this;
         }
         const vec_citer& operator+=(difference_type _Off) {
             ptr += _Off;
@@ -439,18 +439,38 @@ namespace sdj {
         Vector(Vector&& __right) {
             m_size = __right.m_size;
             m_capacity = __right.m_capacity;
-            m_data = new T[m_capacity];
-            for (size_type i = 0; i < m_size; ++i) m_data[i] = __right.m_data[i];
+            m_data = __right.m_data;
+            __right.m_size = 0;
+            __right.m_capacity = 0;
+            __right.m_data = nullptr;
         }
+        // template <class InputIterator>
+        // Vector(InputIterator __left, InputIterator __right) {
+        //     size_type __size = __right - __left;
+        //     m_data = new T[__size], m_size = __size, m_capacity = __size;
+        //     size_type i = 0;
+        //     while (__left != __right) {
+        //         m_data[i] = *__left;
+        //         ++__left;
+        //         ++i;
+        //     }
+        // }
         template <class InputIterator>
-        Vector(InputIterator __left, InputIterator __right) {
-            size_type __size = __right - __left;
-            m_data = new T[__size], m_size = __size, m_capacity = __size;
+        Vector(InputIterator __first, InputIterator __last) {
+            m_size = m_capacity = distance(__first, __last);
+            m_data = static_cast<pointer>(::operator new(m_size * sizeof(T)));
             size_type i = 0;
-            while (__left != __right) {
-                m_data[i] = *__left;
-                ++__left;
-                ++i;
+            try {
+                for(; __first != __last; ++__first, ++i) {
+                    new(m_data + i) T(*__first);
+                }
+            }
+            catch(...) {
+                for(size_type j = 0; j < i; ++j) {
+                    m_data[i].~T();
+                }
+                ::operator delete[](m_data);
+                throw;
             }
         }
         Vector(const initializer_list<T>& init_list) {
@@ -477,15 +497,22 @@ namespace sdj {
             Vector(count, value);
         }
         template <class InputIterator>
-        void assign(InputIterator __left, InputIterator __right) {
+        void assign(InputIterator __first, InputIterator __last) {
             clear();
-            size_type __size = __right - __left;
-            m_data = new T[__size], m_size = __size, m_capacity = __size;
+            m_size = m_capacity = distance(__first, __last);
+            m_data = static_cast<pointer>(::operator new(m_size * sizeof(T)));
             size_type i = 0;
-            while (__left != __right) {
-                m_data[i] = *__left;
-                ++__left;
-                ++i;
+            try {
+                for(; __first != __last; ++__first, ++i) {
+                    new(m_data + i) T(*__first);
+                }
+            }
+            catch(...) {
+                for(size_type j = 0; j < i; ++j) {
+                    m_data[i].~T();
+                }
+                ::operator delete[](m_data);
+                throw;
             }
         }
         void assign(initializer_list<T> init_list) {
@@ -501,11 +528,15 @@ namespace sdj {
             }
         }
         Vector& operator=(Vector<T>&& __right) {
-            clear();
-            m_size = __right.m_size;
-            m_capacity = __right.m_capacity;
-            m_data = new T[m_capacity];
-            for (size_type i = 0; i < m_size; ++i) m_data[i] = __right.m_data[i];
+            if(this != &__right) {
+                clear();
+                m_size = __right.m_size;
+                m_capacity = __right.m_capacity;
+                m_data = __right.m_data;
+                __right.m_size = 0;
+                __right.m_capacity = 0;
+                __right.m_data = nullptr;
+            }
             return *this;
         }
         Vector& operator=(const Vector<T>& __right) {
@@ -525,25 +556,52 @@ namespace sdj {
         bool empty()const noexcept {
             return m_size == 0;
         }
-        void resize(size_type __size) {
-            if (__size == m_capacity) {
-                m_size = __size;
-                return ;
+        // void resize(size_type __size) {
+        //     if (__size == m_capacity) {
+        //         m_size = __size;
+        //         return ;
+        //     }
+        //     T* new_data = new T[__size];
+        //     size_type copy_size = min(__size, m_size);
+        //     for(size_type i = 0; i < copy_size; ++i){
+        //         new_data[i] = m_data[i];
+        //     }
+        //     delete[] m_data;
+        //     m_data = new_data;
+        //     m_size = __size;
+        //     m_capacity = __size;
+        // }
+        // void resize(size_type __size, const T& val) {
+        //     size_type now_size = m_size;
+        //     resize(__size);
+        //     for (size_type i = now_size; i < m_capacity; i++) m_data[i] = val;
+        // }
+        // void reserve(size_type __size) {
+        //     clear();
+        //     m_capacity = __size;
+        //     m_data = new T[__size];
+        // }
+        void reserve(size_type __size) {
+            if(__size > m_capacity) {
+                T* new_data = new T[__size];
+                for(size_type i = 0; i < m_size; ++i) new_data[i] = move(m_data[i]);
+                delete[] m_data;
+                m_data = new_data;
+                m_capacity = __size;
             }
-            T* new_data = new T[__size];
-            size_type copy_size = min(__size, m_size);
-            for(size_type i = 0; i < copy_size; ++i){
-                new_data[i] = m_data[i];
-            }
-            delete[] m_data;
-            m_data = new_data;
-            m_size = __size;
-            m_capacity = __size;
         }
-        void resize(size_type __size, const T& val) {
-            size_type now_size = m_size;
-            resize(__size);
-            for (size_type i = now_size; i < m_capacity; i++) m_data[i] = val;
+        void resize(size_type __size, const T& val = T()) {
+            if(__size == m_size) return ;
+
+            if(__size > m_capacity) {
+                reserve(max(__size, m_capacity * 2));
+                for(size_type i = m_size; i < __size; ++i) m_data[i] = val;
+                m_size = __size;
+            }
+            else {
+                for(size_type i =__size; i < m_size; i++) m_data[i] = T();
+                m_size = __size;
+            }
         }
         void shrink_to_fit() {
             resize(m_size);
@@ -636,7 +694,7 @@ namespace sdj {
             if (position < cbegin() || position >= cend()) throw std::runtime_error("Invalid position!");
             size_type pos = position - cbegin();
             for (size_type i = pos; i < m_size - 1; i++) m_data[i] = m_data[i + 1];
-            m_data[--m_size] = 0;
+            m_data[--m_size] = T();
             if (m_size + (size_type)20 < m_capacity) {
                 size_type prev_size = m_size;
                 resize(m_capacity - 10);
@@ -656,7 +714,7 @@ namespace sdj {
             size_type pos = __left - cbegin();
             size_type i = pos;
             for (; i < m_size - len; i++) m_data[i] = m_data[i + len];
-            for (; i < m_size; i++) m_data[i] = 0;
+            for (; i < m_size; i++) m_data[i] = T();
             m_size -= len;
             if (m_size + len + (size_type)20 < m_capacity) {
                 size_type prev_size = m_size;
@@ -778,11 +836,6 @@ namespace sdj {
         void insert(iterator position, InputIterator a, InputIterator b) {
             const_iterator input = position.operator->();
             insert(input, a, b);
-        }
-        void reserve(size_type __size) {
-            clear();
-            m_capacity = __size;
-            m_data = new T[__size];
         }
     };
     template<typename T>
